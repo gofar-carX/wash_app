@@ -18,6 +18,7 @@ export class WorkersService {
 
 
   findAll():Observable<Worker[]> {
+     
       return from(this.workerRepository.find())
   }
 

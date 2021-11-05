@@ -15,13 +15,13 @@ export class userEntity {
   phone: number;
 
   @Column()
-  car: string;
+  localisation: string;
 
   @Column()
   image: string;
 
   @Column()
-  localisation?: string;
+  car: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAts: Date;

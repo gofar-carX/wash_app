@@ -1,10 +1,10 @@
-import { Controller, Post, Body, Get, Put,Param, Delete} from '@nestjs/common';
+import { Body, Controller, Post, Get,Put,Delete ,Res, UploadedFile,
+  UseInterceptors} from '@nestjs/common';
 import { Users } from '../user.interface';
 import { UsersService } from '../users/users.service';
 import { Observable } from 'rxjs';
-
-import { DeleteResult, UpdateResult } from 'typeorm';
-
+import { Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express'
 @Controller('users')
 export class UsersController {
 
@@ -21,20 +21,14 @@ export class UsersController {
   findAll(): Observable<Users[]>{
       return this.UsersService.findAll()
   }  
-  @Put(':id')
-  update(
-     @Param('id') id : number,
-     @Body() user : Users
-  ):Observable<UpdateResult>{
-     
-      return this.UsersService.updateuser(id,user)
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadImage(@UploadedFile() file: Express.Multer.File) {
+    console.log(file)
+    return this.UsersService.uploadImageToCloudinary(file);
   }
+  
 
-  @Delete(":id")
-  deleteWorker(
-      @Param('id') id : number,
-  ):Observable<DeleteResult>{
-      return this.UsersService.deleteuser(id)
-  }
+  
 
 }

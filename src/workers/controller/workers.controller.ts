@@ -19,7 +19,7 @@ export class WorkersController {
     @Get()
 
     findAll():Observable<Worker[]> {
-        
+       
         return this.workerService.findAll()
     }
 

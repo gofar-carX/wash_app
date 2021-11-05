@@ -8,16 +8,17 @@ services:
         depends_on: 
             - postgres
         environment: 
-            DATABASE_URL: postgres://postgres:Oussamationdsi31@postgres:5432/db
+            DATABASE_URL: postgres://postgres:ENETCOM2021@postgres:5432/carx
             NODE_ENV: development
             PORT: 5000
+            STRIPE_PRIVATE_KEY: 618181eb672ffc0b0c924610:NSaZsEc-tUrNyNFUDWMNA2osMjfGt1
         ports:
-            - "8000:5000"
+            - "8080:5000"
 
     postgres:
         image: postgres:10.4
         ports:
-            - "27000:5432"
+            - "35000:5432"
         environment: 
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: Ahmed@123
