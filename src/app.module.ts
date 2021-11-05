@@ -8,18 +8,21 @@ import { WorkersModule } from './workers/workers.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
-      type: "postgres",
+      type: 'postgres',
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      extra: {
-        ssl: true
-      }
+      // extra: {
+      //   ssl: true
+      // }
+      username: 'postgres',
+      password: 'Oussamationdsi31',
+      database: 'db'
     }),
     UsersModule,
-    WorkersModule
+    WorkersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
