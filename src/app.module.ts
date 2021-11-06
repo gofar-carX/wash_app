@@ -27,11 +27,12 @@ import { ReviewsModule } from './reviews/reviews.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-    
+      username:"postgres",
+      password:"Oussamationdsi31"
      
-      extra: {
-        ssl: true
-      }
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule,
