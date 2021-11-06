@@ -1,22 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
 @Entity()
-export class workerEntity {
+export class AdminEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: true,})
     name:string;
 
     @Column({unique: true})
     email:string;
 
     @Column()
-    phone: number;
+    password:string;
 
-    @Column()
-    localisation: string;
+    
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
-    createdAts: Date
+    createdAts: Date  
+    
 }

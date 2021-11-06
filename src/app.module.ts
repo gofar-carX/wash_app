@@ -9,9 +9,8 @@ import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
-// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 import { ReviewsModule } from './reviews/reviews.module';
-
+import { RequestModule } from './request/request.module';
 
 
 
@@ -39,6 +38,7 @@ import { ReviewsModule } from './reviews/reviews.module';
     PhoneModule,
     CloudinaryModule,
     ReviewsModule,
+    RequestModule
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],

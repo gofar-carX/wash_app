@@ -17,7 +17,11 @@ export class ReviewsService {
     return from(this.ReviewsRepository.save(review))  }
 
   findAll() :Observable<ReviewEntity[]> {
-    return from(this.ReviewsRepository.find())
+    return from(this.ReviewsRepository.find({
+      order: {
+        createdAt: "ASC",  
+      }
+  }))
   }
 
   findOne(id: number) :Observable<ReviewEntity>  {

@@ -1,28 +1,36 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
+import { RequestEntity } from "src/request/entities/request.entity";
 
 @Entity()
 export class userEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
+    @Column({
+        nullable: true,
+       })
+    name:string;
 
-  @Column()
-  email: string;
+    @Column({
+        nullable: true,
+        unique: true,
+       })
+    email:string;
 
-  @Column()
-  phone: number;
+    @Column({
+        nullable: true,
+       })
+    phone: number;
+    @Column({
+     nullable: true,
+    })
+    photo: string;
+    
 
-  @Column()
-  localisation: string;
+    @OneToMany(()=>RequestEntity , request => request.user)
+    requests:RequestEntity[];
 
-  @Column()
-  image: string;
-
-  @Column()
-  car: string;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAts: Date;
+    @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
+    createdAts: Date  
+    
 }

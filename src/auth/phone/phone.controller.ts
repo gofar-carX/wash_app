@@ -21,10 +21,11 @@ export default class PhoneController {
         }
         @Post("verif/:id")
       
-         async   VerifNumber(@Res() response:Response, @Param() params):Promise<any> {
-               let bool =await  this.phoneService.verification(params.id)
-               console.log(bool)
-               if (bool===false){
+         async   VerifNumber(@Res() response:Response, @Param('id') id:string):Promise<any> {
+               let bool =await  this.phoneService.verification(id)
+
+               
+               if (bool==false){
                response
                .status(HttpStatus.EXPECTATION_FAILED)
                .send();
