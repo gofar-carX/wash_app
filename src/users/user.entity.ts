@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {validate} from "class-validator";
 
 @Entity()
 export class userEntity {
@@ -14,7 +15,7 @@ export class userEntity {
     @Column()
     phone: number;
 
-    @Column()
+    @Column({nullable: false})
     localisation: string;
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})

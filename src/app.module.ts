@@ -18,10 +18,10 @@ import { WorkersModule } from './workers/workers.module';
       type: "postgres",
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
-      synchronize: true,
-      extra: {
-        ssl: true
-      }
+      synchronize: false,
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule

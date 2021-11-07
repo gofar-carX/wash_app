@@ -13,6 +13,7 @@ export class WorkersController {
 
     @Post()
     add(@Body() worker: Worker){
+        
         return this.workerService.add(worker)
     }
 

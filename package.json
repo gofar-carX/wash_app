@@ -31,6 +31,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/typeorm": "^7.1.4",
+    "class-validator": "^0.13.1",
     "cors": "^2.8.5",
     "nestjs-stripe": "^1.0.0",
     "nodemon": "^2.0.14",

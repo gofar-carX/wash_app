@@ -2240,7 +2240,7 @@
     "isobject" "^3.0.0"
     "static-extend" "^0.1.1"
 
-"class-validator@*", "class-validator@^0.11.1 || ^0.12.0 || ^0.13.0":
+"class-validator@*", "class-validator@^0.11.1 || ^0.12.0 || ^0.13.0", "class-validator@^0.13.1":
   "integrity" "sha512-zWIeYFhUitvAHBwNhDdCRK09hWx+P0HUwFE8US8/CxFpMVzkUK8RJl7yOIE+BVu2lxyPNgeOaFv78tLE47jBIg=="
   "resolved" "https://registry.npmjs.org/class-validator/-/class-validator-0.13.1.tgz"
   "version" "0.13.1"
