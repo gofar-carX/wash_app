@@ -11,7 +11,7 @@ import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RequestModule } from './request/request.module';
-
+import {PaimentModule} from './paiment/paiment.module';
 
 
 
@@ -38,7 +38,8 @@ import { RequestModule } from './request/request.module';
     PhoneModule,
     CloudinaryModule,
     ReviewsModule,
-    RequestModule
+    RequestModule,
+    PaimentModule
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
