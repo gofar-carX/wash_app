@@ -29,8 +29,8 @@ export class paimentEntity {
     nullable: true,
     unique: true,
   })
-  @ManyToMany(() => RequestEntity, (request) => request.paiment)
-  requests: RequestEntity[];
+  // @ManyToMany(() => RequestEntity, (request) => request.paiment)
+  // requests: RequestEntity[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAts: Date;

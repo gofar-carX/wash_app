@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
+import { RequestEntity } from "src/request/entities/request.entity";
 
 @Entity()
 export class workerEntity {
@@ -8,14 +9,21 @@ export class workerEntity {
     @Column()
     name:string;
 
-    @Column({unique: true})
+    @Column()
     email:string;
 
     @Column()
     phone: number;
 
     @Column()
-    localisation: string;
+    positionx:string;
+
+    @Column()
+    positiony:string;
+
+    
+    @OneToMany(()=>RequestEntity , request => request.worker)
+    requests:RequestEntity[];
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
     createdAts: Date

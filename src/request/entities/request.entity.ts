@@ -1,23 +1,22 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  ManyToMany,
-} from 'typeorm';
-import { userEntity } from 'src/users/user.entity';
-import * as paimentEntity from 'src/paiment/paiment.entity';
+
+import { Column, Entity, PrimaryGeneratedColumn , ManyToOne } from "typeorm";
+import { userEntity } from "src/users/user.entity";
+import { workerEntity } from "src/workers/workers.entity";
+
 
 @Entity()
 export class RequestEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  service: string;
+    @Column({default:null})
+    service:string;
 
-  @Column()
-  position: string;
+    @Column()
+    positionx:string;
+
+    @Column()
+    positiony:string;
 
   @Column()
   typeOfCar: string;
@@ -25,13 +24,29 @@ export class RequestEntity {
   @Column()
   typeOfWash: string;
 
-  @ManyToOne(() => userEntity, (user) => user.requests, { eager: true })
-  user: userEntity;
+    @Column({default:false})
+    isPayed: boolean;
+
+    @Column({nullable:true})
+    Price: string;
+
+    @Column({default:null})
+    paymentDate:Date;
+    @Column({default:false})
+    isServed:boolean;
+
+    @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
+    worker:workerEntity
+
+
+    @ManyToOne(()=>userEntity , user=>user.requests,{eager: true})
+    user: userEntity;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-@ManyToMany(() => paimentEntity.paimentEntity, (paiment) => paiment.requests, {
-    eager: true,
-  })
-paiment: paimentEntity.paimentEntity;
-}
+  
+// @ManyToMany(() => paimentEntity.paimentEntity, (paiment) => paiment.requests, {
+//     eager: true,
+//   })
+// paiment: paimentEntity.paimentEntity;
+ }
