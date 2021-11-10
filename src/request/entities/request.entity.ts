@@ -1,6 +1,7 @@
 
 import { Column, Entity, PrimaryGeneratedColumn , ManyToOne } from "typeorm";
 import { userEntity } from "src/users/user.entity";
+import { workerEntity } from "src/workers/workers.entity";
 
 
 @Entity()
@@ -8,11 +9,14 @@ export class RequestEntity  {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({default:null})
     service:string;
 
     @Column()
-    position:string;
+    positionx:string;
+
+    @Column()
+    positiony:string;
 
     @Column()
     typeOfCar: string;
@@ -20,7 +24,25 @@ export class RequestEntity  {
     @Column()
     typeOfWash: string;
 
-    @ManyToOne(()=>userEntity , user=>user.requests,{eager: true})
+    @Column({default:false})
+    isPayed: boolean;
+
+    @Column({nullable:true})
+    Price: string;
+
+    @Column({default:null})
+    paymentDate:Date;
+    @Column({default:false})
+    isServed:boolean;
+
+    @Column({nullable:true})
+    duration:string;
+
+    @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
+    worker:workerEntity
+
+
+    @ManyToOne(()=>userEntity , user=>user.requests)
     user: userEntity;
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})

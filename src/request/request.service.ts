@@ -22,14 +22,14 @@ export class RequestService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} request`;
+    return from(this.RequestRepository.findOne(id))
   }
 
-  update(id: number) {
-    return `This action updates a #${id} request`;
+  update(id: number,request:RequestEntity) {
+    return from(this.RequestRepository.update(id,request));
   }
 
   remove(id: number) {
-    return `This action removes a #${id} request`;
+    return from(this.RequestRepository.delete(id))
   }
 }

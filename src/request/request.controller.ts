@@ -26,8 +26,8 @@ export class RequestController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string) {
-    return this.requestService.update(+id);
+  update(@Param('id') id: string,@Body() request: RequestEntity) {
+    return this.requestService.update(+id,request);
   }
 
   @Delete(':id')

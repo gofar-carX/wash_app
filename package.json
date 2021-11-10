@@ -36,15 +36,16 @@
     "cloudinary": "^1.27.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "nestjs-twilio": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
     "nestjs-stripe": "^1.0.0",
+    "nestjs-twilio": "^2.1.0",
     "nodemon": "^2.0.14",
     "pg": "^8.4.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
-    "twilio": "^3.70.0",
     "stripe": "^8.185.0",
+    "twilio": "^3.70.0",
     "typeorm": "^0.2.28"
   },
   "devDependencies": {

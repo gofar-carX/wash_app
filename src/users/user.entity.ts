@@ -6,28 +6,20 @@ export class userEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        nullable: true,
-       })
+    @Column({nullable: true,})
     name:string;
 
-    @Column({
-        nullable: true,
-        unique: true,
-       })
+    @Column({ nullable: true,unique: true,})
     email:string;
 
-    @Column({
-        nullable: true,
-       })
+    @Column({nullable: true, })
     phone: number;
-    @Column({
-     nullable: true,
-    })
+
+    @Column({nullable: true })
     photo: string;
     
 
-    @OneToMany(()=>RequestEntity , request => request.user)
+    @OneToMany(()=>RequestEntity , request => request.user , {eager: true})
     requests:RequestEntity[];
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
