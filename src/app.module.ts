@@ -22,11 +22,14 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-      username:"postgres",
-      password: "Hovcu"
-      // extra: {
-      //   ssl: true
-      // }
+      
+    
+   
+      
+       
+      extra: {
+        ssl: true
+      }
     }),
     UsersModule,
     WorkersModule,

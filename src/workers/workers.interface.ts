@@ -9,5 +9,6 @@ export interface Worker{
     positiony:string,
     requests:Request[],
     isAvailable:boolean,
+    password:string,
     createdAt?:Date
 }

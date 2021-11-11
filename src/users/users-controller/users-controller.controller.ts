@@ -96,6 +96,8 @@ export class UsersController {
         .json({ response: "UPDATED" })
     })
   }
+
+  
   //get spesific user with id 
   @Get(":id")
   findUser(@Param('id') id: string, @Res() respone: Response) {

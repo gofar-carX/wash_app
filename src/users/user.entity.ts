@@ -1,18 +1,19 @@
 import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
 import { RequestEntity } from "src/request/entities/request.entity";
+import {ReviewEntity} from "src/reviews/entities/review.entity"
 
 @Entity()
 export class userEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable: true,})
+    @Column({default:'',})
     name:string;
 
-    @Column({ nullable: true,unique: true,})
+    @Column({ default:'',unique: true,})
     email:string;
 
-    @Column({nullable: true, })
+    @Column({default: 0, })
     phone: number;
 
     @Column({nullable: true })
@@ -21,6 +22,9 @@ export class userEntity {
 
     @OneToMany(()=>RequestEntity , request => request.user , {eager: true})
     requests:RequestEntity[];
+
+    @OneToMany(()=>ReviewEntity , review => review.user )
+    reviews:ReviewEntity[];
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
     createdAts: Date  

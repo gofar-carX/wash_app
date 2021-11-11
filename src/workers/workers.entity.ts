@@ -21,6 +21,9 @@ export class workerEntity {
     @Column()
     positiony:string;
 
+    @Column()
+    password:string;
+
     @Column({default:false})
     isAvailable:boolean;
 
