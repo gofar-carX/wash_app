@@ -17,20 +17,19 @@ export class UsersService {
         private userRepository: Repository<userEntity>
         , private cloudinary: CloudinaryService,
 
-    ) { }
+    ){}
 
     getUerWithId(pramas: string): Observable<userEntity[]> {
-        console.log(typeof pramas,"from service")
         return from(this.userRepository.find({
             where: [
                 { id: pramas }
             ]
         }))
     }
-    getUserWithPhoneNumber(user: Users): Observable<userEntity[]> {
+    getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
             where: [
-                { phone: user.phone }
+                { phone: phone }
             ]
         }))
     }
@@ -60,15 +59,12 @@ export class UsersService {
 
 
     }
-    async add(user: Users) {
-
-        try {
-            const data = await this.userRepository.save(user)
-            return data;
-        }
-        catch (err) {
-
-        }
+     add(user: Users) {
+          
+     
+          return from( this.userRepository.save(user))
+          
+       
 
     }
     async updateUser(user1: Users) {
@@ -88,7 +84,7 @@ export class UsersService {
 
 
     async uploadImageToCloudinary(file: Express.Multer.File) {
-     
+
         const url = await this.cloudinary.uploadImage(file)
         return url;
     }
@@ -96,7 +92,7 @@ export class UsersService {
         return from(this.userRepository.find())
     }
     updateImage(photo: string, id: any) {
-      
+
         return this.userRepository.update(id, { photo: photo })
 
     }

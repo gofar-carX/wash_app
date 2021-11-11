@@ -9,7 +9,7 @@ export class RequestEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-    @Column({default:null})
+    @Column({default:''})
     service:string;
 
     @Column()
@@ -27,19 +27,25 @@ export class RequestEntity {
     @Column({default:false})
     isPayed: boolean;
 
-    @Column({nullable:true})
+    @Column({default:''})
     Price: string;
 
     @Column({default:null})
     paymentDate:Date;
+    
     @Column({default:false})
     isServed:boolean;
+
+    
+
+    @Column({default:''})
+    duration:string;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
     worker:workerEntity
 
 
-    @ManyToOne(()=>userEntity , user=>user.requests,{eager: true})
+    @ManyToOne(()=>userEntity , user=>user.requests)
     user: userEntity;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

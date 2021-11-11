@@ -21,6 +21,12 @@ export class workerEntity {
     @Column()
     positiony:string;
 
+    @Column()
+    password:string;
+
+    @Column({default:false})
+    isAvailable:boolean;
+
     
     @OneToMany(()=>RequestEntity , request => request.worker)
     requests:RequestEntity[];

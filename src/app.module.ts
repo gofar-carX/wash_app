@@ -26,6 +26,12 @@ import { AdminModule } from './admin/admin.module';
       // extra: {
       //   ssl: true
       // }
+   
+      
+       
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule,
