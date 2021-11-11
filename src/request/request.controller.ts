@@ -1,13 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete , Res , HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpStatus,
+} from '@nestjs/common';
 import { RequestService } from './request.service';
 import { RequestEntity } from './entities/request.entity';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Request } from './request.interface';
-import { response, Response,request } from 'express';
-import {payrequest} from './entities/payrequest.interface'
-import axios from 'axios'
-
+import { response, request } from 'express';
+import { payrequest } from './entities/payrequest.interface';
+import axios from 'axios';
 
 @Controller('request')
 export class RequestController {
@@ -19,31 +27,64 @@ export class RequestController {
   }
 
   @Post('payment')
-  
+  pay(@Body() payrequest: payrequest) {
+    let myObj = {
+      receiverWalletId: process.env.DB_WALLET,
+      amount: payrequest.amount,
+      token: 'TND',
+      firstName: payrequest.firstname,
+      lastName: payrequest.lastname,
+      phoneNumber: payrequest.phoneNumber,
+      email: payrequest.email,
+      orderId: '1',
+      link: 'https://api.konnect.network/fYZAU7ln@',
+      webhook: 'https://merchant.tech/api/notification_payment',
+      successUrl: 'https://dev.konnect.network/gateway/payment-success',
+      failUrl: 'https://dev.konnect.network/gateway/payment-failure',
+      acceptedPaymentMethods: ['bank_card', 'wallet', 'e-DINAR'],
+    };
 
-    
-  pay(@Body() payrequest:payrequest){
-    var myObj={
-      receiverWallet :process.env.DB_WALLET,
-      amount:request.body.amount,
-      selectedPaymentMethod:'gateway',
-      token:'TND',
-      firstname:request.body.firstname,
-      lastname:request.body.lastname,
-      email:request.body.email,
-      Phone:request.body.Phone,
-      webhook:"https://merchant.tech/api/notification_payment",
-      successUrl:"http://localhost:5000/user",
-      failUrl:"http://localhost:5000"
-    }
-    
-     axios.post('https: //api.konnect.network/api/v2/payments/init-payment',myObj).then((data)=>{
-      response.status(HttpStatus.ACCEPTED).json(data.data.payUrl)   
-     })
+    // var myObj = {
+    //   receiverWalletId: process.env.DB_WALLET,
+    //   amount: payrequest.amount,
+    //   acceptedPaymentMethods: 'gateway',
+    //   token: 'TND',
+    //   firstname: payrequest.firstname,
+    //   lastname: payrequest.lastname,
+    //   email: payrequest.email,
+    //   phoneNumber: payrequest.phoneNumber,
+    //   link: 'https://api.konnect.network/fYZAU7ln@',
+    //   webhook: 'https://merchant.tech/api/notification_payment',
+    //   successUrl: 'http://localhost:5000/user',
+    //   failUrl: 'http://localhost:5000',
+    // };
+    axios
+      .post(
+        'https://api.preprod.konnect.network/api/v2/payments/init-payment',
+        myObj,
+        // {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'x-api-key': '6187cd89e9a4051e02a7c983:tl5QWDLJmDXUjOzm',
+        //   },
+        // },
+      )
+      .then((response) => {
+        console.log('hello', response);
+
+        // response.status(HttpStatus.ACCEPTED).json(response.data.payUrl);
+        console.log(response.data.payUrl);
+
+        // console.log('this is data', data.data.payUrl);
+      })
+      .catch((err) => {
+        console.log('am here', err);
+      });
+    console.log('this is data');
   }
 
   @Get()
-  findAll():Observable<RequestEntity[]> {
+  findAll(): Observable<RequestEntity[]> {
     return this.requestService.findAll();
   }
 
@@ -53,8 +94,8 @@ export class RequestController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string,@Body() request: RequestEntity) {
-    return this.requestService.update(+id,request);
+  update(@Param('id') id: string, @Body() request: RequestEntity) {
+    return this.requestService.update(+id, request);
   }
 
   @Delete(':id')
