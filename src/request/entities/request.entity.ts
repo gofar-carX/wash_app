@@ -9,14 +9,14 @@ export class RequestEntity  {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable:true})
+    @Column({default:''})
     service:string;
 
     @Column()
-    positionx:number;
+    positionx:string;
 
     @Column()
-    positiony:number;
+    positiony:string;
 
     @Column()
     typeOfCar: string;
@@ -24,20 +24,28 @@ export class RequestEntity  {
     @Column()
     typeOfWash: string;
 
-    @Column({nullable:true})
+    @Column({default:false})
     isPayed: boolean;
 
-    @Column({nullable:true})
+    @Column({default:''})
     Price: string;
 
-    @Column({nullable:true})
+    @Column({default:null})
     paymentDate:Date;
+    
+    @Column({default:false})
+    isServed:boolean;
+
+    
+
+    @Column({default:''})
+    duration:string;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
     worker:workerEntity
 
 
-    @ManyToOne(()=>userEntity , user=>user.requests,{eager: true})
+    @ManyToOne(()=>userEntity , user=>user.requests)
     user: userEntity;
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})

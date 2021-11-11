@@ -16,18 +16,20 @@ import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true},
-                                       
-      ),
+    ConfigModule.forRoot({isGlobal:true},),
     TypeOrmModule.forRoot({
       type: "postgres",
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-     
+    
       extra: {
         ssl: true
       }
+   
+      
+       
+   
     }),
     UsersModule,
     WorkersModule,

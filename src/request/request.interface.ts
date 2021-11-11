@@ -5,13 +5,15 @@ export interface Request{
     id: number,
     service:string,
     user:Users,
-    positionx:number,
-    positiony:number,
+    positionx:string,
+    positiony:string,
     typeOfCar: string,
     typeOfWash: string,
     isPayed: boolean,
     Price: string,
     paymentDate:Date,
+    duration:string,
     worker:Worker,
+    isServed:boolean,
     createdAt?:Date
 }
