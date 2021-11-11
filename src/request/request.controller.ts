@@ -43,37 +43,19 @@ export class RequestController {
       failUrl: 'https://dev.konnect.network/gateway/payment-failure',
       acceptedPaymentMethods: ['bank_card', 'wallet', 'e-DINAR'],
     };
-
-    // var myObj = {
-    //   receiverWalletId: process.env.DB_WALLET,
-    //   amount: payrequest.amount,
-    //   acceptedPaymentMethods: 'gateway',
-    //   token: 'TND',
-    //   firstname: payrequest.firstname,
-    //   lastname: payrequest.lastname,
-    //   email: payrequest.email,
-    //   phoneNumber: payrequest.phoneNumber,
-    //   link: 'https://api.konnect.network/fYZAU7ln@',
-    //   webhook: 'https://merchant.tech/api/notification_payment',
-    //   successUrl: 'http://localhost:5000/user',
-    //   failUrl: 'http://localhost:5000',
-    // };
     axios
-      .post(
-        'https://api.preprod.konnect.network/api/v2/payments/init-payment',
-        myObj,
-        // {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'x-api-key': '6187cd89e9a4051e02a7c983:tl5QWDLJmDXUjOzm',
-        //   },
-        // },
-      )
+      .post('https://api.konnect.network/api/v2/payments/init-payment', myObj, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key':
+            '6187cd89e9a4051e02a7c983:Dvoi6KHp-CvIfX1jhWHDZZLLkkpHe8',
+        },
+      })
       .then((response) => {
         console.log('hello', response);
 
         // response.status(HttpStatus.ACCEPTED).json(response.data.payUrl);
-        console.log(response.data.payUrl);
+        // console.log(response.data.payUrl);
 
         // console.log('this is data', data.data.payUrl);
       })
