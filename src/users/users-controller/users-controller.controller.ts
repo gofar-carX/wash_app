@@ -26,8 +26,7 @@ export class UsersController {
       if (result.length === 0) {
           const user:Users =  {id:0,name:"",email:null,phone:Number(phone),photo:"",requests:[]  } 
         this.UsersService.add(user).subscribe((result_) => {
-          console.log(user)
-                 console.log(result_.phone,"aeae") 
+        
           const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
           let number = `+216${result_.phone}`
           this.UsersService.sendSms(number, welcomeMessage)
