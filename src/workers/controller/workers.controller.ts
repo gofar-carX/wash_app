@@ -17,7 +17,7 @@ export class WorkersController {
     isAuth(@Body() user: object, @Res() respone: Response) {
 
         this.workerService.findUserWithUserName(user).subscribe(result => {
-            console.log(result, "is the user undifiend ")
+         
             if (result == undefined) {
                 respone.status(HttpStatus.NOT_FOUND)
                     .json({ response: "check your user name or your  password" })
