@@ -51,10 +51,10 @@ export class RequestController {
             '6187cd89e9a4051e02a7c983:Dvoi6KHp-CvIfX1jhWHDZZLLkkpHe8',
         },
       })
-      .then((response) => {
-        console.log('hello', response);
+      .then((res) => {
+        console.log('hello', res);
 
-        // response.status(HttpStatus.ACCEPTED).json(response.data.payUrl);
+        response.status(HttpStatus.ACCEPTED).json(res.data.payUrl);
         // console.log(response.data.payUrl);
 
         // console.log('this is data', data.data.payUrl);
