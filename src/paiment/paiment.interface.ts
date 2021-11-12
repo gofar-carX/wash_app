@@ -1,11 +1,10 @@
 import { Request } from '../request/request.interface'
 
-export interface Users{
-    id: number,
-    name:string,
+export interface Paimnet{
+    firstname:string,
+    lastname:string,
     email:string,
     phone: number,
-    photo:string,
     requests:Request[],
     createdAt?:Date
     
