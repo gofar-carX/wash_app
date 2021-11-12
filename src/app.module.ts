@@ -19,23 +19,10 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      username: 'postgres',
-      password: 'Oussamationdsi31',
-      database: 'db',
-
-      // extra: {
-      //   ssl: true
-      // }
-   
-      
-       
-      // extra: {
-      //   ssl: true
-      // }
     
-      // extra: {
-      //   ssl: true
-      // }
+      extra: {
+        ssl: true
+      }
    
       
        
