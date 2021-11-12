@@ -17,17 +17,12 @@ export class UsersController {
   ///auth with phone
   @Post("send/:id")
   send(@Param('id') phone: number, @Res() respone: Response) {
-    // get all users
       console.log(phone)
-      
-    this.UsersService.getUserWithPhoneNumber(phone).subscribe((result) => {
-
-      
-      if (result.length === 0) {
+      this.UsersService.getUserWithPhoneNumber(phone).subscribe((result) => {
+       if (result.length === 0) {
           const user:Users =  {id:0,name:"",email:null,phone:Number(phone),photo:"",requests:[]  } 
         this.UsersService.add(user).subscribe((result_) => {
-          console.log(user)
-                 console.log(result_.phone,"aeae") 
+        
           const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
           let number = `+216${result_.phone}`
           this.UsersService.sendSms(number, welcomeMessage)
@@ -42,11 +37,8 @@ export class UsersController {
         })
       } else if(result.length>0){
         const token = jwt.sign(
-        
-
-          { user_id: result[0] },
+       { user_id: result[0] },
           process.env.TOKEN_KEY
-
         )
         const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
         let number = `+216${result[0].phone}`
@@ -97,6 +89,8 @@ export class UsersController {
         .json({ response: "UPDATED" })
     })
   }
+
+  
   //get spesific user with id 
   @Get(":id")
   findUser(@Param('id') id: string, @Res() respone: Response) {
