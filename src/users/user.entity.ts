@@ -4,8 +4,8 @@ import {ReviewEntity} from "src/reviews/entities/review.entity"
 
 @Entity()
 export class userEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
     @Column({default:'',})
     name:string;

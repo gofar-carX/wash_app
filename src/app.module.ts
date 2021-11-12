@@ -8,24 +8,34 @@ import { WorkersModule } from './workers/workers.module';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RequestModule } from './request/request.module';
+import { PaimentModule } from './paiment/paiment.module';
 import { AdminModule } from './admin/admin.module';
-
-
-
-
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true},),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
-      type: "postgres",
-      url: process.env.DATABASE_URL ,
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
+      username: 'postgres',
+      password: 'Oussamationdsi31',
+      database: 'db',
+
+      // extra: {
+      //   ssl: true
+      // }
+   
+      
+       
+      // extra: {
+      //   ssl: true
+      // }
     
-      extra: {
-        ssl: true
-      }
+      // extra: {
+      //   ssl: true
+      // }
    
       
        
@@ -36,14 +46,10 @@ import { AdminModule } from './admin/admin.module';
     CloudinaryModule,
     ReviewsModule,
     RequestModule,
-    AdminModule
+    PaimentModule,
+    AdminModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
-  
-    
-    
-  
-   
+  providers: [AppService],
 })
 export class AppModule {}
