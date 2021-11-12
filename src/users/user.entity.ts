@@ -1,22 +1,32 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
+import { RequestEntity } from "src/request/entities/request.entity";
+import {ReviewEntity} from "src/reviews/entities/review.entity"
 
 @Entity()
 export class userEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
+    @Column({default:'',})
     name:string;
 
-    @Column()
+    @Column({ default:'',unique: true,})
     email:string;
 
-    @Column()
+    @Column({default: 0, })
     phone: number;
 
-    @Column()
-    localisation: string;
+    @Column({nullable: true })
+    photo: string;
+    
+
+    @OneToMany(()=>RequestEntity , request => request.user , {eager: true})
+    requests:RequestEntity[];
+
+    @OneToMany(()=>ReviewEntity , review => review.user )
+    reviews:ReviewEntity[];
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
-    createdAts: Date    
+    createdAts: Date  
+    
 }
