@@ -16,7 +16,15 @@ export class WorkersService {
       return from(this.workerRepository.save(worker))
   }
 
-
+  findWithId(id:string){
+     return from (
+        this.workerRepository.find({
+            where: [
+                { id: id }
+            ]
+        }) 
+     )   
+  }
   findAll():Observable<Worker[]> {
       return from(this.workerRepository.find())
   }
