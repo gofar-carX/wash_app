@@ -42,7 +42,7 @@ export class RequestEntity {
     duration:string;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
-    @JoinColumn()  
+    
     worker:workerEntity
 
 
