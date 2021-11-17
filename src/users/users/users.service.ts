@@ -1,14 +1,12 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { userEntity } from '../user.entity';
-import { Repository, getRepository, createQueryBuilder, getConnection } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Users } from '../user.interface';
 import { from, Observable } from 'rxjs';
 import { CloudinaryService } from '../../image/cloudinary/cloudinary.service';
 require('dotenv').config();
-import { InjectTwilio, TwilioClient } from 'nestjs-twilio';
-import { throwError } from 'rxjs';
-@Injectable()
+
 export class UsersService {
     accountSid = process.env.TWILIO_ACCOUNT_SID;
     authToken = process.env.TWILIO_AUTH_TOKEN;
