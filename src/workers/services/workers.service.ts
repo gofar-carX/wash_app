@@ -1,4 +1,4 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { workerEntity } from '../workers.entity';
 import {InjectRepository} from '@nestjs/typeorm'
 import {DeleteResult, Repository, UpdateResult} from "typeorm"
@@ -38,5 +38,20 @@ export class WorkersService {
   deleteWorker(id:number):Observable<DeleteResult> {
       return from(this.workerRepository.delete(id))
   }
+  getUserWithId (id:string){
 
+    return from(this.workerRepository.find(
+        {
+        
+        where:{
+            workerId:id
+        }
+            
+         }
+        )
+        
+        
+        )
+
+  }
 }

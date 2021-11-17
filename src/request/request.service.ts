@@ -6,6 +6,7 @@ import { RequestEntity } from './entities/request.entity';
 import { Request } from './request.interface';
 import {payrequest} from './entities/payrequest.interface'
 import axios from 'axios'
+import { join } from 'path';
 
 @Injectable()
 export class RequestService {
@@ -30,7 +31,18 @@ export class RequestService {
   update(id: number,request:RequestEntity) {
     return from(this.RequestRepository.update(id,request));
   }
+  getUserWithId (id:string){
 
+    return from(this.RequestRepository.find(
+        { 
+          where:{
+            worker:{id:id}
+          }
+        }
+        )
+)
+
+  }
   remove(id: number) {
     return from(this.RequestRepository.delete(id))
   }
