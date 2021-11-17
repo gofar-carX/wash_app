@@ -44,7 +44,7 @@ export class UsersController {
         const token = jwt.sign(
         
 
-          { user_id: result[0] },
+          { user_id: result[0].id },
           process.env.TOKEN_KEY
 
         )
