@@ -58,12 +58,8 @@ export class UsersService {
 
     }
      add(user: Users) {
+           return from( this.userRepository.save(user))
           
-     
-          return from( this.userRepository.save(user))
-          
-       
-
     }
     async updateUser(user1: Users) {
 
@@ -90,7 +86,6 @@ export class UsersService {
         return from(this.userRepository.find())
     }
     updateImage(photo: string, id: any) {
-
         return this.userRepository.update(id, { photo: photo })
 
     }
