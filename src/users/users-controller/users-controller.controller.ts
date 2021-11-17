@@ -37,7 +37,9 @@ export class UsersController {
         })
       } else if(result.length>0){
         const token = jwt.sign(
-       { user_id: result[0] },
+        
+
+          { user_id: result[0].id },
           process.env.TOKEN_KEY
         )
         const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`

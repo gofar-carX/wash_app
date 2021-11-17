@@ -13,7 +13,7 @@ export class userEntity {
     @Column({ default:'',unique: true,nullable: true })
     email:string;
 
-    @Column({default: 0, })
+    @Column({nullable: true })
     phone: number;
 
     @Column({nullable: true })
