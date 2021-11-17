@@ -36,7 +36,7 @@ export class RequestService {
         {
         
         where:{
-            workerId:id
+            id:id
         }
             
          }
