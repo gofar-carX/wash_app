@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpStatus,
+  Res
 } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { RequestEntity } from './entities/request.entity';
@@ -16,6 +17,7 @@ import { Request } from './request.interface';
 import { response, request } from 'express';
 import { payrequest } from './entities/payrequest.interface';
 import axios from 'axios';
+import { Response } from 'express';
 
 @Controller('request')
 export class RequestController {
@@ -75,9 +77,10 @@ export class RequestController {
     return this.requestService.findOne(+id);
   }
   @Get("req/:id")
-  find(@Param('id') id: string) {
+  find(@Param('id') id: string, @Res() respone: Response) {
         this.requestService.getUserWithId(id).subscribe((result)=>{
-          console.log(result);
+            respone.status(HttpStatus.CREATED)
+            .json(result);
         })
 
   }
