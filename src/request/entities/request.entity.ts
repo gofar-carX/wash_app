@@ -5,11 +5,11 @@ import { workerEntity } from "src/workers/workers.entity";
 
 
 @Entity()
-export class RequestEntity  {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class RequestEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({default:null})
+    @Column({default:''})
     service:string;
 
     @Column()
@@ -18,24 +18,27 @@ export class RequestEntity  {
     @Column()
     positiony:string;
 
-    @Column()
-    typeOfCar: string;
+  @Column()
+  typeOfCar: string;
 
-    @Column()
-    typeOfWash: string;
+  @Column()
+  typeOfWash: string;
 
     @Column({default:false})
     isPayed: boolean;
 
-    @Column({nullable:true})
+    @Column({default:''})
     Price: string;
 
     @Column({default:null})
     paymentDate:Date;
+    
     @Column({default:false})
     isServed:boolean;
 
-    @Column({nullable:true})
+    
+
+    @Column({default:''})
     duration:string;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
@@ -45,6 +48,11 @@ export class RequestEntity  {
     @ManyToOne(()=>userEntity , user=>user.requests)
     user: userEntity;
 
-    @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
-    createdAt: Date
-}
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+  
+// @ManyToMany(() => paimentEntity.paimentEntity, (paiment) => paiment.requests, {
+//     eager: true,
+//   })
+// paiment: paimentEntity.paimentEntity;
+ }

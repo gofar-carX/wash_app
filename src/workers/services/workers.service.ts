@@ -20,7 +20,9 @@ export class WorkersService {
   findAll():Observable<Worker[]> {
       return from(this.workerRepository.find())
   }
-
+  findUserWithUserName(user:object){
+      return from(this.workerRepository.findOne({ name:user['name']}))
+  }
   updateWorker(id:number,worker:Worker):Observable<UpdateResult> {
           return from(this.workerRepository.update(id,worker))
   }

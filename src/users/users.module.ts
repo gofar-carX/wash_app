@@ -11,6 +11,6 @@ import { CloudinaryModule } from '../image/cloudinary/cloudinary.module';
 @Module({
   imports: [TypeOrmModule.forFeature([userEntity]),CloudinaryModule,],
   providers: [UsersService],
-  controllers: [UsersController, UsersController]
+  controllers: [UsersController],
 })
 export class UsersModule {}
