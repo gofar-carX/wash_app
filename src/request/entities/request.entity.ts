@@ -1,5 +1,5 @@
 
-import { Column, Entity, PrimaryGeneratedColumn , ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn , ManyToOne ,JoinColumn } from "typeorm";
 import { userEntity } from "src/users/user.entity";
 import { workerEntity } from "src/workers/workers.entity";
 
@@ -42,15 +42,15 @@ export class RequestEntity {
     duration:string;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
+    @JoinColumn()  
     worker:workerEntity
 
 
-    @ManyToOne(()=>userEntity , user=>user.requests)
+    @ManyToOne(()=>userEntity , user=>user.requests) 
     user: userEntity;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-  
 // @ManyToMany(() => paimentEntity.paimentEntity, (paiment) => paiment.requests, {
 //     eager: true,
 //   })

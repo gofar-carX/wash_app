@@ -15,13 +15,13 @@ export class workerEntity {
     @Column()
     phone: number;
 
-    @Column()
+    @Column({nullable: true,})
     positionx:string;
 
-    @Column()
+    @Column({nullable: true,})
     positiony:string;
 
-    @Column()
+    @Column({nullable: true,})
     password:string;
 
     @Column({default:false})
