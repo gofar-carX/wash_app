@@ -30,7 +30,22 @@ export class RequestService {
   update(id: number,request:RequestEntity) {
     return from(this.RequestRepository.update(id,request));
   }
+  getUserWithId (id:string){
 
+    return from(this.RequestRepository.find(
+        {
+        
+        where:{
+            id:id
+        }
+            
+         }
+        )
+        
+        
+        )
+
+  }
   remove(id: number) {
     return from(this.RequestRepository.delete(id))
   }

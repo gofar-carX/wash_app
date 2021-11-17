@@ -74,6 +74,14 @@ export class RequestController {
   findOne(@Param('id') id: string) {
     return this.requestService.findOne(+id);
   }
+  @Get("req/:id")
+  find(@Param('id') id: string) {
+        this.requestService.getUserWithId(id).subscribe((result)=>{
+          console.log(result);
+        })
+
+  }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() request: RequestEntity) {
