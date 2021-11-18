@@ -36,13 +36,13 @@ export class RequestService {
     return from(this.RequestRepository.find(
         { 
           where:{
-            worker:{id:id}
+            worker:{id:id},
+            user:{id:id}
           }
         }
         )
-)
-
-  }
+      )
+    }
   remove(id: number) {
     return from(this.RequestRepository.delete(id))
   }
