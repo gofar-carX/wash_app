@@ -49,6 +49,7 @@ export class WorkersService {
             
          }
 ))}
+
     async  updateAvilbalities(id:string){
         const property = await this.workerRepository.findOne({
             where:{id}
@@ -59,5 +60,15 @@ export class WorkersService {
              });
     }
 
-
+    async  updatePosition(id:string ,positiony:string,positionx:string){
+        
+        const property = await this.workerRepository.findOne({
+            where:{id}
+        })
+        return this.workerRepository.save({
+            ...property,
+            positionx:positionx,
+            positiony:positiony
+             });
+    }
 }
