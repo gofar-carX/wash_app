@@ -25,7 +25,14 @@ export class RequestService {
   }
 
   findOne(id: number) {
-    return from(this.RequestRepository.findOne(id))
+    return from(this.RequestRepository.findOne(
+          id,{ 
+            order:{
+              id:'DESC'
+            }
+          }
+      
+      ))
   }
 
   update(id: number,request:RequestEntity) {
