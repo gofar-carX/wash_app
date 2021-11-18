@@ -17,15 +17,22 @@ export class UsersService {
 
     ){}
 
-    getUerWithId(pramas: string): Observable<userEntity[]> {
-        return from(this.userRepository.find({
-            where: [
-                { id: pramas }
-            ],
-            order:{
-                 id:'DESC'
-            }
-        }))
+    getUerWithId(pramas: string){
+        // return from(this.userRepository.find({
+        //     where: [
+        //         { id: pramas }
+        //     ],
+        //     order:{
+        //          id:'DESC'
+        //     }
+        // }))
+      return   this.userRepository.createQueryBuilder()
+      .innerJoinAndSelect("userEntity.requests", "requests") 
+      .orderBy({'requests.createdAt': 'DESC'})
+      .where("userEntity.id = :id", {
+        id: Number(pramas),
+      })
+      .getOne();
     }
     getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
