@@ -20,11 +20,10 @@ export class UsersService {
     getUerWithId(pramas: string): Observable<userEntity[]> {
         return from(this.userRepository.find({
             where: [
-                { id: pramas }
-            ],
-            order:{
-                id:'DESC'
-            }
+                { id: pramas ,order:{
+                    user:{id:'DESC'}
+                } }
+            ]
         }))
     }
     getUserWithPhoneNumber(phone: number) {
