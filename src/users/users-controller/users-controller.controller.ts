@@ -95,12 +95,10 @@ export class UsersController {
   
   //get spesific user with id 
   @Get(":id")
-  findUser(@Param('id') id: string, @Res() respone: Response) {
-    this.UsersService.getUerWithId(id).subscribe((result) => {
-      respone.status(HttpStatus.CREATED)
-        .json({ respond: "FOUND",data:result})
-    })
-
+  async findUser(@Param('id') id: string, @Res() respone: Response) {
+    const data =   await   this.UsersService.getUerWithId(id)
+    console.log(data, 'fdsvcsdcs')
+     respone.status(HttpStatus.CREATED).json({data:data})
   }
   //get all user 
   @Get()
