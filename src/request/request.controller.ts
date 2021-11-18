@@ -7,7 +7,8 @@ import {
   Param,
   Delete,
   HttpStatus,
-  Res
+  Res,
+  Put
 } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { RequestEntity } from './entities/request.entity';
@@ -85,7 +86,15 @@ export class RequestController {
 
   }
 
+  @Put("id")
+  updateService(@Param('id') id: string, @Res() respone: Response){
+      this.requestService.updateIsServed(id).then((response)=>{
+        respone.status(HttpStatus.CREATED)
+        .json(response);
 
+      })
+
+  }
   @Patch(':id')
   update(@Param('id') id: string, @Body() request: RequestEntity) {
     return this.requestService.update(+id, request);

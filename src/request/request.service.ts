@@ -43,6 +43,16 @@ export class RequestService {
         )
       )
     }
+    async  updateIsServed(id:string){
+      const property = await this.RequestRepository.findOne({
+          where:{id}
+      })
+      return this.RequestRepository.save({
+          ...property,
+          isServed:true    
+           });
+  }
+
   remove(id: number) {
     return from(this.RequestRepository.delete(id))
   }

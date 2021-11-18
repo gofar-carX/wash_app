@@ -26,7 +26,7 @@ export class UsersService {
     }
     getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
-            where: [
+            where: [ 
                 { phone: phone }
             ]
         }))
