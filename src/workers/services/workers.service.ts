@@ -48,10 +48,16 @@ export class WorkersService {
         }
             
          }
-        )
-        
-        
-        )
+))}
+    async  updateAvilbalities(id:string){
+        const property = await this.workerRepository.findOne({
+            where:{id}
+        })
+        return this.workerRepository.save({
+            ...property,
+            isAvailable:true    
+             });
+    }
 
-  }
+
 }
