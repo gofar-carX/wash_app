@@ -21,7 +21,11 @@ export class RequestService {
  
 
   findAll():Observable<RequestEntity[]> {
-    return from(this.RequestRepository.find())
+    return from(this.RequestRepository.find(
+      { order:{
+        id:'DESC'
+      }}
+    ))
   }
 
   findOne(id: number) {
