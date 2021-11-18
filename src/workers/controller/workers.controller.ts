@@ -96,6 +96,7 @@ export class WorkersController {
 
         return this.workerService.updateWorker(id, worker)
     }
+    
 
     @Delete(":id")
     deleteWorker(
@@ -104,4 +105,12 @@ export class WorkersController {
         return this.workerService.deleteWorker(id)
     }
 
+
+    @Put('update/:id')
+    updateAvailability(@Param('id') id:string, @Res() respone: Response){
+        this.workerService.updateAvilbalities(id).then((response_)=>{
+            respone.status(HttpStatus.CREATED)
+           .json({data:response_})
+        })
+    }
 }

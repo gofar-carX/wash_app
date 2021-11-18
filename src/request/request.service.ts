@@ -21,11 +21,22 @@ export class RequestService {
  
 
   findAll():Observable<RequestEntity[]> {
-    return from(this.RequestRepository.find())
+    return from(this.RequestRepository.find(
+      { order:{
+        id:'DESC'
+      }}
+    ))
   }
 
   findOne(id: number) {
-    return from(this.RequestRepository.findOne(id))
+    return from(this.RequestRepository.findOne(
+          id,{ 
+            order:{
+              id:'DESC'
+            }
+          }
+      
+      ))
   }
 
   update(id: number,request:RequestEntity) {
@@ -36,13 +47,23 @@ export class RequestService {
     return from(this.RequestRepository.find(
         { 
           where:{
-            worker:{id:id}
+            worker:{id:id},
+            user:{id:id}
           }
         }
         )
-)
-
+      )
+    }
+    async  updateIsServed(id:string){
+      const property = await this.RequestRepository.findOne({
+          where:{id}
+      })
+      return this.RequestRepository.save({
+          ...property,
+          isServed:true    
+           });
   }
+
   remove(id: number) {
     return from(this.RequestRepository.delete(id))
   }
