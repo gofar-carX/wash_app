@@ -18,14 +18,7 @@ export class UsersService {
     ){}
 
     getUerWithId(pramas: string){
-        // return from(this.userRepository.find({
-        //     where: [
-        //         { id: pramas }
-        //     ],
-        //     order:{
-        //          id:'DESC'
-        //     }
-        // }))
+
       return   this.userRepository.createQueryBuilder()
       .innerJoinAndSelect("userEntity.requests", "requests") 
       .orderBy({'requests.createdAt': 'DESC'})
