@@ -113,4 +113,22 @@ export class WorkersController {
            .json({data:response_})
         })
     }
+    @Put('position/:id')
+    updatePosition(@Param('id') id:string,@Body() position:object, @Res() respone: Response){
+        console.log(position["positionx"])
+        if (position["positionx"] ==undefined && position['positiony'] ==undefined){
+            respone.status(HttpStatus.NOT_FOUND)
+            .json("no position ")
+            return 
+
+        }else{
+
+            this.workerService.updatePosition(id,position["positionx"],position["positiony"]).then((response_)=>{
+                console.log(response_,'position updated ')
+                respone.status(HttpStatus.CREATED)
+               .json({data:response_})
+            })
+        }
+      
+    }
 }
