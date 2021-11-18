@@ -86,7 +86,7 @@ export class RequestController {
 
   }
 
-  @Put("id")
+  @Put(":id")
   updateService(@Param('id') id: string, @Res() respone: Response){
       this.requestService.updateIsServed(id).then((response)=>{
         respone.status(HttpStatus.CREATED)
