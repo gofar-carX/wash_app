@@ -26,7 +26,7 @@ export class UsersService {
       .where("userEntity.id = :id", {
         id: Number(pramas),
       })
-      .getOne();
+      .getMany();
     }
     getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
