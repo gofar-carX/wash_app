@@ -44,12 +44,12 @@ export class WorkersService {
         {
         
         where:{
-            workerId:id
+            id:id
         }
             
          }
 ))}
-
+ 
     async  updateAvilbalities(id:string){
         const property = await this.workerRepository.findOne({
             where:{id}
