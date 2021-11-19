@@ -48,7 +48,7 @@ export class RequestService {
         { 
           where:{
             worker:{id:id},
-            user:{id:id}
+           
           }
         }
         )
