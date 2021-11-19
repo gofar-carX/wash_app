@@ -18,15 +18,20 @@ export class UsersService {
     ){}
 
     getUerWithId(pramas: string){
+        return this.userRepository.find({
+            where: {
+                id:pramas
+            }
 
-      return   this.userRepository.createQueryBuilder()
-      .innerJoinAndSelect("userEntity.requests", "requests","requests.worker") 
-    
-      .orderBy({'requests.createdAt': 'DESC'})
-      .where("userEntity.id = :id", {
-        id: Number(pramas),
-      })
-      .getOne();
+        })
+    //   return   this.userRepository.createQueryBuilder()
+    //   .innerJoinAndSelect("userEntity.requests", "requests") 
+    //   .innerJoinAndSelect("RequestEntity.worker","worker")
+    //   .orderBy({'requests.createdAt': 'DESC'})
+    //   .where("userEntity.id = :id", {
+    //     id: Number(pramas),
+    //   })
+    //   .getOne();
     }
     getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({

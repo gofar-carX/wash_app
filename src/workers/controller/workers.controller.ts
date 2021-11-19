@@ -85,7 +85,8 @@ export class WorkersController {
     findUserWithId(@Param('id') id:string, @Res() respone: Response){
         
         this.workerService.getUserWithId(id).subscribe((result)=>{
-            console.log(result)
+            respone.status(HttpStatus.CREATED)
+            .json({data:result})
         })
     }
     @Put(':id')
