@@ -20,13 +20,13 @@ export class UsersService {
     getUerWithId(pramas: string){
 
       return   this.userRepository.createQueryBuilder()
-      .innerJoinAndSelect("userEntity.requests", "requests") 
-      .innerJoinAndSelect("requests.worker","worker")
+      .innerJoinAndSelect("userEntity.requests", "requests","requests.worker") 
+    
       .orderBy({'requests.createdAt': 'DESC'})
       .where("userEntity.id = :id", {
         id: Number(pramas),
       })
-      .getMany();
+      .getOne();
     }
     getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
