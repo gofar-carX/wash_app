@@ -21,6 +21,7 @@ export class UsersService {
 
       return   this.userRepository.createQueryBuilder()
       .innerJoinAndSelect("userEntity.requests", "requests") 
+      .innerJoinAndSelect("userEntity.worker","worker")
       .orderBy({'requests.createdAt': 'DESC'})
       .where("userEntity.id = :id", {
         id: Number(pramas),
